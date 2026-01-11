@@ -23,6 +23,27 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
+
+        /* ===== Logo =====*/
+        /* Tambahkan ini di file CSS Anda atau di dalam tag <style> */
+.logo-container {
+    display: flex;         /* Membuat gambar dan teks sejajar ke samping */
+    align-items: center;    /* Membuat gambar dan teks lurus di tengah secara vertikal */
+    gap: 10px;             /* Memberi jarak antara gambar dan teks */
+}
+
+.logo-img {
+    height: 40px;          /* Sesuaikan tinggi logo dengan selera Anda */
+    width: auto;           /* Menjaga proporsi gambar agar tidak gepeng */
+    border-radius: 8px;    /* Opsional: membuat sudut logo sedikit melengkung */
+}
+
+.logo-text {
+    font-size: 24px;       /* Sesuaikan ukuran font SnackZone */
+    font-weight: bold;
+    color: #e65c6b;        /* Warna merah muda sesuai di foto Anda */
+    font-family: sans-serif;
+}
         /* ===== VARIABLES & RESET ===== */
         :root {
             /* Color Palette untuk Makanan */
@@ -1469,7 +1490,9 @@
     <header>
         <div class="container header-container">
             <div class="logo" id="logo">
-                <span class="logo-icon">🍔</span>
+              <div class="logo-container">
+    <img src="Gemini_Generated_Image_mblfjemblfjemblf.png" alt="Logo SnackZone" class="logo-img">
+</div>
                 <span>SnackZone</span>
             </div>
             
