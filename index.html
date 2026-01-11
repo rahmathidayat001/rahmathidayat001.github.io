@@ -1,0 +1,2188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahmat Hidayat - Portfolio Mewah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F4E4C1;
+            --gold-dark: #B8860B;
+            --navy: #0A2463;
+            --navy-light: #1E3A8A;
+            --cream: #FFF9F0;
+            --charcoal: #2D3748;
+            --maroon: #800000;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            color: var(--charcoal);
+            background-color: var(--cream);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        h1 {
+            font-size: 4rem;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-dark) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            width: 70%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-dark) 100%);
+            bottom: -15px;
+            left: 15%;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--maroon) 100%);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover:before {
+            left: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 25px 0;
+            transition: var(--transition);
+            background-color: rgba(255, 249, 240, 0.95);
+            box-shadow: 0 5px 30px rgba(10, 36, 99, 0.1);
+        }
+
+        header.scrolled {
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 35px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--navy);
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-dark) 100%);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--navy);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 180px;
+            padding-bottom: 120px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(255, 249, 240, 1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0) 70%);
+            top: -300px;
+            right: -200px;
+            z-index: 0;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .hero-text h3 {
+            font-size: 1.8rem;
+            color: var(--navy-light);
+            margin-bottom: 10px;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--charcoal);
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 15px solid white;
+            box-shadow: 0 25px 50px rgba(10, 36, 99, 0.2);
+            transition: var(--transition);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* About */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .skills {
+            flex: 1;
+        }
+
+        .skill-item {
+            margin-bottom: 30px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .skill-bar {
+            height: 12px;
+            background-color: #E2E8F0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border-radius: 10px;
+        }
+
+        /* Projects */
+        .projects {
+            background-color: rgba(10, 36, 99, 0.03);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(10, 36, 99, 0.1);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(10, 36, 99, 0.2);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(10, 36, 99, 0.1);
+            transition: var(--transition);
+            border-top: 5px solid var(--gold);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(10, 36, 99, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 25px;
+        }
+
+        /* Contact */
+        .contact-content {
+            display: flex;
+            gap: 60px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-right: 20px;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid #E2E8F0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: white;
+        }
+
+        .form-control:focus {
+            border-color: var(--gold);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--navy);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-column h3 {
+            color: var(--gold);
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .footer-links li {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #CBD5E0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 8px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #CBD5E0;
+            font-size: 0.95rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 36, 99, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+            animation: modalFadeIn 0.5s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: var(--navy);
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--gold);
+        }
+
+        /* Notifikasi */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--gold);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 3000;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.3s ease;
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .notification.error {
+            background: #ff4757;
+        }
+
+        .notification.success {
+            background: #2ed573;
+        }
+
+        /* Styling untuk modal e-commerce dan game */
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+            transition: var(--transition);
+        }
+
+        .modal-close-btn:hover {
+            background: var(--gold-dark);
+            transform: scale(1.1);
+        }
+
+        /* Responsive untuk modal */
+        @media (max-width: 1100px) {
+            h1 { font-size: 3.2rem; }
+            h2 { font-size: 2.4rem; }
+            
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 60px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-content {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                position: fixed;
+                top: 90px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 30px 0;
+                box-shadow: 0 15px 30px rgba(10, 36, 99, 0.1);
+                transform: translateY(-150%);
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            nav ul.active {
+                transform: translateY(0);
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .profile-img {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Responsive untuk modal game */
+            .modal-content {
+                padding: 30px 20px;
+            }
+
+            .modal-content h2 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            .modal-close-btn {
+                top: 10px;
+                right: 10px;
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            
+            section {
+                padding: 70px 0;
+            }
+            
+            .hero {
+                padding-top: 150px;
+            }
+            
+            .btn {
+                padding: 14px 28px;
+            }
+
+            /* Responsive untuk game canvas */
+            .game-container canvas {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+        }
+
+        /* Game controls styling */
+        .game-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .game-info-panel {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            background: rgba(10, 36, 99, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .game-info-item {
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .snake-color-selector {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .snake-color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .snake-color-option:hover {
+            transform: scale(1.1);
+        }
+
+        .snake-color-option.active {
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">RH<span>.</span></a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Tentang</a></li>
+                    <li><a href="#projects">Projek</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h3>Hallo, saya</h3>
+                    <h1>Rahmat Hidayat</h1>
+                    <h3>Developer & <span style="color: var(--gold);">Entrepreneur</span></h3>
+                    <p>Seorang profesional dengan passion dalam pengembangan game, aplikasi web, dan pengelolaan bisnis kuliner. Membangun solusi digital kreatif dengan sentuhan elegan dan fungsional.</p>
+                
+                    <div class="hero-btns">
+                        <a href="#projects" class="btn">Lihat Projek</a>
+                        <a href="#contact" class="btn" style="background: var(--navy);">Hubungi Saya</a>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="WhatsApp Image 2025-12-21 at 06.20.41.jpeg" alt="Rahmat Hidayat" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Tentang Saya</h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Passion dalam Teknologi & Bisnis</h3>
+                    <p>Sejak kecil, saya telah tertarik dengan dunia teknologi dan kreativitas. Perjalanan saya dimulai dari pengembangan game sederhana hingga sekarang mengelola bisnis kuliner bersama dengan karir sebagai developer.</p>
+                    <p>Saya percaya bahwa kombinasi antara teknologi dan bisnis dapat menciptakan solusi yang berdampak besar. Portfolio ini menampilkan 3 projek utama yang telah saya kerjakan dengan fokus pada game dan e-commerce.</p>
+                    
+                    <a href="#projects" class="btn" style="margin-top: 30px;">Jelajahi Projek</a>
+                </div>
+                
+                <div class="skills">
+                    <h3>Keahlian</h3>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Game Development</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Web Development</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>UI/UX Design</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Bisnis & Manajemen</span>
+                            <span>88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 88%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Projek Unggulan</h2>
+            
+            <div class="projects-grid">
+                <!-- E-commerce: Kantin Rahmat -->
+                <div class="project-card">
+                    <div class="project-badge">E-commerce</div>
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Kantin Rahmat" class="project-img">
+                    <div class="project-info">
+                        <h3>Kantin Anti Lapar</h3>
+                        <p>Platform e-commerce untuk bisnis kantin dengan 10 menu makanan dan minuman terbaik. Fitur keranjang dengan penyimpanan data pelanggan dan notifikasi pemesanan.</p>
+                        <div class="project-links">
+                            <a href="#ecommerce" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">Kunjungi Kantin</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Game 1: Game Cacing -->
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Game Cacing" class="project-img">
+                    <div class="project-info">
+                        <h3>Game Cacing</h3>
+                        <p>Game snake klasik dengan pilihan warna cacing, makanan berbeda setiap dimakan, dan sistem level progresif. Kontrol cacing untuk makan makanan!</p>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-game1" style="padding: 10px 20px; font-size: 0.9rem;">Mainkan Game</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Layanan</h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Pengembangan Game</h3>
+                    <p>Membuat game dengan HTML5 Canvas dan JavaScript. Game responsif, menarik, dan dapat dimainkan di berbagai perangkat.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>E-commerce Solution</h3>
+                    <p>Membangun platform e-commerce dengan fitur lengkap: keranjang belanja, pembayaran, dan manajemen produk.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Pengembangan website responsif dengan teknologi terbaru untuk performa optimal dan pengalaman pengguna terbaik.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Hubungi Saya</h2>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Mari Berkolaborasi</h3>
+                    <p>Saya selalu terbuka untuk diskusi tentang proyek game, pengembangan web, atau kolaborasi bisnis. Jangan ragu untuk menghubungi saya!</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Lokasi</h4>
+                            <p>Lombok Timur, Nusa Tenggara Barat, Indonesia</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>rahmat08450@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Telepon</h4>
+                            <p>+6287838141227</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nama Lengkap</label>
+                            <input type="text" id="name" class="form-control" placeholder="Masukkan nama Anda" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Masukkan email Anda" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subjek</label>
+                            <input type="text" id="subject" class="form-control" placeholder="Subjek pesan" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Pesan</label>
+                            <textarea id="message" class="form-control" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Rahmat Hidayat</h3>
+                    <p>Seorang developer dan entrepreneur dengan passion dalam menciptakan solusi digital yang kreatif dan berdampak.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Tautan Cepat</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">Tentang</a></li>
+                        <li><a href="#projects">Projek</a></li>
+                        <li><a href="#contact">Kontak</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Projek</h3>
+                    <ul class="footer-links">
+                        <li><a href="#ecommerce">Kantin Rahmat</a></li>
+                        <li><a href="#game1">Game Cacing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kontak</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Lombok Timur, Nusa Tenggara Barat, Indonesia</li>
+                        <li><i class="fas fa-envelope"></i> rahmat08450@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> +6287838141227</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Rahmat Hidayat. All rights reserved. | Portfolio Mewah</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal untuk Game & E-commerce -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal modal-close-btn" id="closeModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="modal-body">
+                <!-- Konten modal akan dimuat di sini -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Modal functionality
+        const modal = document.getElementById('modal');
+        const closeModal = document.getElementById('closeModal');
+        const modalBody = document.getElementById('modal-body');
+        
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Fungsi Notifikasi
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'error' ? 'exclamation-circle' : 'check-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Tampilkan notifikasi
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            // Hapus notifikasi setelah 3 detik
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, 3000);
+        }
+        
+        // KANTIN RAHMAT - DIPERBAIKI DENGAN FOTO MAKANAN
+        document.querySelector('a[href="#ecommerce"]').addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            const PASS_ADMIN = "rahmat123";
+
+            // DATA MENU DENGAN FOTO MAKANAN REALISTIS
+            let daftarMenu = [
+                { 
+                    id: 1, 
+                    nama: "Nasi Goreng Spesial", 
+                    harga: 25000, 
+                    foto: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    stok: true 
+                },
+                { 
+                    id: 2, 
+                    nama: "Mie Ayam Bakso", 
+                    harga: 22000, 
+                    foto: "https://images.unsplash.com/photo-1612874748456-5eabd1cbb5d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    stok: true 
+                },
+                { 
+                    id: 3, 
+                    nama: "Ayam Geprek", 
+                    harga: 28000, 
+                    foto: "https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    stok: true 
+                },
+                { 
+                    id: 4, 
+                    nama: "Sate Ayam (10 tusuk)", 
+                    harga: 30000, 
+                    foto: "https://images.unsplash.com/photo-1599058532867-f4dab6bf138c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    stok: true 
+                },
+                { 
+                    id: 5, 
+                    nama: "Gado-gado", 
+                    harga: 20000, 
+                    foto: "https://images.unsplash.com/photo-1585937421612-0c3b6ccdf77c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    stok: true 
+                },
+                { 
+                    id: 6, 
+                    nama: "Es Teh Manis", 
+                    harga: 8000, 
+                    foto: "https://images.unsplash.com/photo-1561125468-2cd5d4f0b7f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    stok: true 
+                },
+                { 
+                    id: 7, 
+                    nama: "Jus Alpukat", 
+                    harga: 18000, 
+                    foto: "https://images.unsplash.com/photo-1623065121674-50d2c05049d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    stok: true 
+                },
+                { 
+                    id: 8, 
+                    nama: "Es Cincau", 
+                    harga: 12000, 
+                    foto: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    stok: true 
+                },
+                { 
+                    id: 9, 
+                    nama: "Kopi Susu", 
+                    harga: 15000, 
+                    foto: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    stok: true 
+                },
+                { 
+                    id: 10, 
+                    nama: "Air Mineral", 
+                    harga: 5000, 
+                    foto: "https://images.unsplash.com/photo-1523362628745-0c100150b504?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    stok: true 
+                }
+            ];
+
+            // TAMPILAN DASHBOARD
+            modalBody.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; background:#1a2a6c; padding:10px; border-radius:10px; color:white;">
+                    <h2 style="margin:0; font-size:1.2rem;">Kantin Anti Lapar</h2>
+                    <button id="mode-toggle" style="background:#f1c40f; border:none; padding:5px 10px; border-radius:5px; cursor:pointer; font-weight:bold;">MODE ADMIN</button>
+                </div>
+
+                <div id="pelanggan-section">
+                    <div style="margin-bottom:20px;">
+                        <input type="text" id="search-menu" placeholder="🔍 Cari menu..." 
+                               style="width:100%; padding:12px; border-radius:8px; border:2px solid var(--gold); font-size:1rem;">
+                    </div>
+                    
+                    <div id="menu-grid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:15px; margin-bottom:20px;"></div>
+                    
+                    <div style="background:#fff; border:2px solid #1a2a6c; padding:15px; border-radius:15px;">
+                        <h3 style="margin-top:0; color:#1a2a6c;">Konfirmasi Pesanan</h3>
+                        <input type="text" id="p-nama" placeholder="Nama Anda" 
+                               style="width:100%; padding:12px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd; font-size:1rem;">
+                        <input type="number" id="p-wa" placeholder="No WhatsApp (contoh: 6287838141227)" 
+                               style="width:100%; padding:12px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd; font-size:1rem;">
+                        
+                        <div id="keranjang-list" style="background:#f9f9f9; padding:10px; border-radius:8px; margin-bottom:10px; font-size:0.9rem; max-height:200px; overflow-y:auto;"></div>
+                        
+                        <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:1.1rem; margin-bottom:15px;">
+                            <span>Total:</span> <span id="p-total">Rp 0</span>
+                        </div>
+                        <button id="btn-pesan" style="width:100%; background:#25D366; color:white; border:none; padding:15px; border-radius:10px; font-weight:bold; cursor:pointer; font-size:1rem;">KONFIRMASI KE KASIR</button>
+                        <p style="text-align:center; margin-top:10px; font-size:0.8rem; color:#666;">Pesanan akan diproses setelah konfirmasi ke kasir</p>
+                    </div>
+                </div>
+
+                <div id="admin-section" style="display:none;">
+                    <div style="background:#eee; padding:15px; border-radius:10px; margin-bottom:20px;">
+                        <p style="margin:0; font-weight:bold; font-size:1.1rem;">Total Cuan Hari Ini: <span id="cuan-hari-ini" style="color:green;">Rp 0</span></p>
+                        <button id="reset-data" style="font-size:0.8rem; color:red; border:none; background:none; cursor:pointer; padding:5px 0;">[Reset Laporan Harian]</button>
+                    </div>
+                    <div id="admin-orders" style="display:grid; gap:15px; max-height:400px; overflow-y:auto; padding:10px;"></div>
+                </div>
+            `;
+
+            // LOGIKA PROGRAM
+            let keranjang = {};
+
+            // Render Menu (Pelanggan) dengan foto makanan
+            function renderMenu(filter = '') {
+                const grid = document.getElementById('menu-grid');
+                grid.innerHTML = '';
+                daftarMenu.forEach(item => {
+                    if(!item.stok) return;
+                    if(filter && !item.nama.toLowerCase().includes(filter.toLowerCase())) return;
+                    
+                    grid.innerHTML += `
+                        <div style="background:white; padding:12px; border-radius:10px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                            <div style="height:100px; background:#f8f9fa; border-radius:8px; overflow:hidden; margin-bottom:8px;">
+                                <img src="${item.foto}" alt="${item.nama}" style="width:100%; height:100%; object-fit:cover;">
+                            </div>
+                            <h5 style="margin:8px 0; font-size:0.9rem; min-height:40px; display:flex; align-items:center; justify-content:center;">${item.nama}</h5>
+                            <p style="font-size:0.9rem; font-weight:bold; color:#d48307;">Rp ${item.harga.toLocaleString()}</p>
+                            <button class="add-btn" data-id="${item.id}" style="width:100%; background:#1a2a6c; color:white; border:none; border-radius:5px; padding:8px; font-size:0.8rem; cursor:pointer; transition:0.3s;">
+                                + Keranjang
+                            </button>
+                        </div>`;
+                });
+                
+                document.querySelectorAll('.add-btn').forEach(b => {
+                    b.onclick = () => {
+                        const id = b.dataset.id;
+                        const item = daftarMenu.find(m => m.id == id);
+                        
+                        // Tampilkan notifikasi hijau ketika item ditambahkan
+                        showNotification(`${item.nama} ditambahkan ke keranjang!`, 'success');
+                        
+                        if(keranjang[id]) {
+                            keranjang[id].qty++;
+                        } else {
+                            keranjang[id] = { 
+                                nama: item.nama, 
+                                harga: item.harga, 
+                                qty: 1 
+                            };
+                        }
+                        renderKeranjang();
+                    };
+                });
+            }
+
+            function renderKeranjang() {
+                const list = document.getElementById('keranjang-list');
+                let html = ''; 
+                let total = 0;
+                
+                Object.keys(keranjang).forEach(k => {
+                    const item = keranjang[k];
+                    total += (item.harga * item.qty);
+                    html += `<div style="margin-bottom:8px; padding-bottom:8px; border-bottom:1px solid #eee;">
+                                <strong>${item.nama}</strong> (x${item.qty}) 
+                                <span style="float:right; font-weight:bold;">Rp ${(item.harga * item.qty).toLocaleString()}</span>
+                             </div>`;
+                });
+                
+                list.innerHTML = html || '<div style="text-align:center; color:#888;">Keranjang kosong</div>';
+                document.getElementById('p-total').innerText = "Rp " + total.toLocaleString();
+            }
+
+            // Tombol Pesan - DIPERBAIKI: Konfirmasi ke kasir saja
+            document.getElementById('btn-pesan').onclick = () => {
+                const nama = document.getElementById('p-nama').value;
+                const wa = document.getElementById('p-wa').value;
+                const total = document.getElementById('p-total').innerText;
+
+                if(!nama || !wa || Object.keys(keranjang).length === 0) {
+                    showNotification("Data tidak lengkap! Harap isi semua kolom.", 'error');
+                    return;
+                }
+
+                // Validasi nomor WhatsApp
+                const waRegex = /^(\+62|62|0)8[1-9][0-9]{6,9}$/;
+                if(!waRegex.test(wa)) {
+                    showNotification("Format nomor WhatsApp tidak valid!", 'error');
+                    return;
+                }
+
+                const orderID = "ANT-" + Math.floor(Math.random() * 900 + 100);
+                const items = Object.values(keranjang).map(i => `${i.qty}x ${i.nama}`).join(", ");
+
+                const riwayat = JSON.parse(localStorage.getItem('kantin_db_pro') || '[]');
+                riwayat.push({ 
+                    id: orderID, 
+                    nama, 
+                    wa, 
+                    items, 
+                    total, 
+                    status: "🟡 Menunggu Konfirmasi", 
+                    time: new Date().toLocaleTimeString('id-ID'),
+                    date: new Date().toLocaleDateString('id-ID')
+                });
+                localStorage.setItem('kantin_db_pro', JSON.stringify(riwayat));
+
+                showNotification(`NOMOR ANTREAN: ${orderID} - Silakan konfirmasi ke kasir!`, 'success');
+                
+                // Tampilkan struk pesanan
+                const struk = `
+                    ===============================
+                    KANTIN ANTI LAPAR
+                    ===============================
+                    Nomor Antrean: ${orderID}
+                    Nama: ${nama}
+                    WhatsApp: ${wa}
+                    Waktu: ${new Date().toLocaleTimeString('id-ID')}
+                    Tanggal: ${new Date().toLocaleDateString('id-ID')}
+                    -------------------------------
+                    DAFTAR PESANAN:
+                    ${items.split(', ').map(item => `  • ${item}`).join('\n')}
+                    -------------------------------
+                    TOTAL: ${total}
+                    ===============================
+                    *Silakan tunjukkan struk ini ke kasir*
+                    ===============================
+                `;
+                
+                alert(struk);
+                
+                keranjang = {}; 
+                renderKeranjang();
+                document.getElementById('p-nama').value = '';
+                document.getElementById('p-wa').value = '';
+            };
+
+            // Fitur pencarian
+            document.getElementById('search-menu').addEventListener('input', function(e) {
+                renderMenu(e.target.value);
+            });
+
+            // LOGIKA ADMIN
+            document.getElementById('mode-toggle').onclick = () => {
+                const p = prompt("Password Admin:");
+                if(p === PASS_ADMIN) {
+                    document.getElementById('pelanggan-section').style.display = 'none';
+                    document.getElementById('admin-section').style.display = 'block';
+                    renderAdmin();
+                    showNotification("Mode Admin diaktifkan", 'success');
+                } else {
+                    showNotification("Password salah!", 'error');
+                }
+            };
+
+            function renderAdmin() {
+                const db = JSON.parse(localStorage.getItem('kantin_db_pro') || '[]');
+                const container = document.getElementById('admin-orders');
+                let cuan = 0;
+                container.innerHTML = '';
+
+                db.slice().reverse().forEach(o => {
+                    const isSelesai = o.status === "✅ Selesai";
+                    if(isSelesai) cuan += parseInt(o.total.replace(/\D/g,'') || 0);
+
+                    container.innerHTML += `
+                        <div style="background:white; border:1px solid #ddd; padding:12px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <b style="font-size:0.9rem;">[${o.id}] ${o.nama}</b>
+                                <span style="font-size:0.7rem; color:gray;">${o.time}</span>
+                            </div>
+                            <p style="font-size:0.8rem; margin:5px 0; color:#555;"><strong>WhatsApp:</strong> ${o.wa}</p>
+                            <p style="font-size:0.8rem; margin:5px 0; color:#555;"><strong>Pesanan:</strong> ${o.items}</p>
+                            <p style="font-size:0.8rem; margin:5px 0; color:#555;"><strong>Total:</strong> ${o.total}</p>
+                            <div style="font-size:0.8rem; margin-bottom:8px;">
+                                <strong>Status:</strong> <span style="font-weight:bold; color:${o.status === '✅ Selesai' ? 'green' : o.status === '🟠 Diproses' ? 'orange' : '#f1c40f'}">${o.status}</span>
+                            </div>
+                            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+                                <button onclick="updateAdmStatus('${o.id}', '🟠 Diproses')" 
+                                        style="flex:1; min-width:80px; background:#f39c12; color:white; font-size:0.7rem; border:none; padding:6px; border-radius:4px; cursor:pointer;">
+                                    Proses
+                                </button>
+                                <button onclick="panggilPelanggan('${o.id}', '${o.nama}')" 
+                                        style="flex:1; min-width:80px; background:#2ecc71; color:white; font-size:0.7rem; border:none; padding:6px; border-radius:4px; cursor:pointer;">
+                                    Panggil
+                                </button>
+                                <button onclick="hapusAdm('${o.id}')" 
+                                        style="background:#e74c3c; color:white; border:none; padding:6px 10px; border-radius:4px; cursor:pointer; font-size:0.8rem;">
+                                    ❌
+                                </button>
+                            </div>
+                        </div>`;
+                });
+                document.getElementById('cuan-hari-ini').innerText = "Rp " + cuan.toLocaleString();
+            }
+
+            window.updateAdmStatus = (id, status) => {
+                let db = JSON.parse(localStorage.getItem('kantin_db_pro') || '[]');
+                const idx = db.findIndex(x => x.id === id);
+                if(idx !== -1) {
+                    db[idx].status = status;
+                    localStorage.setItem('kantin_db_pro', JSON.stringify(db));
+                    renderAdmin();
+                    showNotification(`Status pesanan ${id} diperbarui`, 'success');
+                }
+            };
+
+            window.panggilPelanggan = (id, nama) => {
+                // Suara panggilan yang berbeda (lebih ramah)
+                const suaraPanggilan = [
+                    "Pesanan nomor " + id + " atas nama " + nama + ", sudah siap. Silakan diambil di kasir.",
+                    "Panggilan untuk nomor antrean " + id + ", pesanan sudah jadi.",
+                    nama + ", pesanan Anda dengan nomor " + id + " sudah selesai."
+                ];
+                
+                const pesan = suaraPanggilan[Math.floor(Math.random() * suaraPanggilan.length)];
+                const speech = new SpeechSynthesisUtterance(pesan);
+                speech.lang = 'id-ID';
+                speech.rate = 0.9; // Lebih lambat dan jelas
+                speech.pitch = 1.2; // Suara lebih ramah
+                
+                // Cari data pesanan untuk update status
+                let db = JSON.parse(localStorage.getItem('kantin_db_pro') || '[]');
+                const idx = db.findIndex(x => x.id === id);
+                if(idx !== -1) {
+                    db[idx].status = "✅ Selesai";
+                    localStorage.setItem('kantin_db_pro', JSON.stringify(db));
+                    renderAdmin();
+                }
+                
+                // Jalankan text-to-speech
+                window.speechSynthesis.speak(speech);
+                showNotification(`Memanggil pelanggan ${nama} (${id})`, 'success');
+            };
+
+            window.hapusAdm = (id) => {
+                if(confirm(`Hapus pesanan ${id}?`)) {
+                    let db = JSON.parse(localStorage.getItem('kantin_db_pro') || '[]');
+                    db = db.filter(x => x.id !== id);
+                    localStorage.setItem('kantin_db_pro', JSON.stringify(db));
+                    renderAdmin();
+                    showNotification(`Pesanan ${id} dihapus`, 'success');
+                }
+            };
+
+            document.getElementById('reset-data').onclick = () => {
+                if(confirm("Hapus semua riwayat harian?")) {
+                    localStorage.removeItem('kantin_db_pro');
+                    renderAdmin();
+                    showNotification("Riwayat harian direset", 'success');
+                }
+            };
+
+            // Mulai render pelanggan
+            modal.style.display = 'flex';
+            renderMenu();
+            renderKeranjang();
+        });
+        
+        // GAME CACING - DIPERBAIKI
+        document.querySelector('.btn-game1').addEventListener('click', (e) => {
+            e.preventDefault();
+            modalBody.innerHTML = `
+                <h2 style="margin-bottom: 20px; text-align: center;">Game Cacing - Snake Game</h2>
+                
+                <div class="game-info-panel">
+                    <div class="game-info-item">
+                        <div>Skor</div>
+                        <div style="font-size: 1.2rem; font-weight: bold; color: var(--navy);">
+                            <span id="score1">0</span> / <span id="target-score1">100</span>
+                        </div>
+                    </div>
+                    <div class="game-info-item">
+                        <div>Level</div>
+                        <div style="font-size: 1.2rem; font-weight: bold; color: var(--gold);" id="level1">1</div>
+                    </div>
+                    <div class="game-info-item">
+                        <div>Panjang</div>
+                        <div style="font-size: 1.2rem; font-weight: bold; color: #2e8b57;" id="length1">3</div>
+                    </div>
+                    <div class="game-info-item">
+                        <div>Rekor</div>
+                        <div style="font-size: 1.2rem; font-weight: bold; color: #ff4757;" id="highScore1">0</div>
+                    </div>
+                </div>
+
+                <div style="margin: 20px 0; text-align: center;">
+                    <h4 style="margin-bottom: 10px; color: var(--navy);">Pilih Warna Cacing:</h4>
+                    <div class="snake-color-selector">
+                        <div class="snake-color-option active" data-color="#2e8b57" style="background: #2e8b57;"></div>
+                        <div class="snake-color-option" data-color="#ff6b6b" style="background: #ff6b6b;"></div>
+                        <div class="snake-color-option" data-color="#4ecdc4" style="background: #4ecdc4;"></div>
+                        <div class="snake-color-option" data-color="#ffe66d" style="background: #ffe66d;"></div>
+                        <div class="snake-color-option" data-color="#a29bfe" style="background: #a29bfe;"></div>
+                        <div class="snake-color-option" data-color="#fd79a8" style="background: #fd79a8;"></div>
+                    </div>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px; position: relative; overflow: hidden;">
+                    <div style="position: relative;">
+                        <canvas id="gameCanvas1" width="600" height="400" 
+                                style="display: block; margin: 0 auto; background: #1a2a6c; border-radius: 8px; max-width: 100%;"></canvas>
+                    </div>
+                </div>
+
+                <div class="game-controls">
+                    <button id="startGame1" class="btn" style="min-width: 120px;">Mulai Game</button>
+                    <button id="pauseGame1" class="btn" style="background: #ff9900; min-width: 120px;">Jeda</button>
+                    <button id="resetGame1" class="btn" style="background: var(--navy); min-width: 120px;">Reset</button>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; background: #f8f9fa; padding: 15px; border-radius: 10px;">
+                    <div>
+                        <h4 style="margin-bottom: 10px; color: var(--navy);">Kontrol:</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9rem;">
+                            <li><strong>↑ / W</strong> = Atas</li>
+                            <li><strong>↓ / S</strong> = Bawah</li>
+                            <li><strong>← / A</strong> = Kiri</li>
+                            <li><strong>→ / D</strong> = Kanan</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 10px; color: var(--navy);">Level Target:</h4>
+                        <ul style="list-style: none; padding: 0; font-size: 0.9rem;">
+                            <li><strong>Level 1:</strong> 100 poin</li>
+                            <li><strong>Level 2:</strong> 200 poin</li>
+                            <li><strong>Level 3:</strong> 300 poin</li>
+                            <li><strong>Level 4+:</strong> +100 poin/level</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <p style="font-size: 0.9rem; color: #666; text-align: center; margin-top: 20px;">
+                    <strong>Instruksi:</strong> Kontrol cacing untuk makan makanan. Setiap makanan memberikan poin berbeda. Capai target poin untuk naik level! Hindari dinding dan tubuh sendiri.
+                </p>
+            `;
+            modal.style.display = 'flex';
+            
+            // Load game script
+            setTimeout(() => {
+                initGame1();
+            }, 100);
+        });
+        
+        // Game 1 Implementation: Game Cacing dengan Pilihan Warna
+        function initGame1() {
+            const canvas = document.getElementById('gameCanvas1');
+            const ctx = canvas.getContext('2d');
+            const startBtn = document.getElementById('startGame1');
+            const pauseBtn = document.getElementById('pauseGame1');
+            const resetBtn = document.getElementById('resetGame1');
+            const scoreDisplay = document.getElementById('score1');
+            const targetScoreDisplay = document.getElementById('target-score1');
+            const levelDisplay = document.getElementById('level1');
+            const lengthDisplay = document.getElementById('length1');
+            const highScoreDisplay = document.getElementById('highScore1');
+            
+            const gridSize = 20;
+            const gridWidth = Math.floor(canvas.width / gridSize);
+            const gridHeight = Math.floor(canvas.height / gridSize);
+            
+            let snake = [];
+            let food = {};
+            let direction = 'right';
+            let nextDirection = 'right';
+            let gameRunning = false;
+            let gameLoopId = null;
+            let score = 0;
+            let level = 1;
+            let targetScore = 100;
+            let speed = 150; // ms per frame
+            let highScore = localStorage.getItem('snakeHighScore') || 0;
+            let snakeColor = '#2e8b57'; // Warna default
+            
+            // Array warna untuk makanan yang berbeda
+            const foodColors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#A29BFE', '#FD79A8', '#00B894', '#FDCB6E', '#6C5CE7'];
+            const foodSizes = [12, 14, 16, 18, 20]; // Ukuran makanan berbeda
+            const foodPoints = [5, 10, 15, 20, 25]; // Poin makanan berbeda
+            
+            // Update warna cacing berdasarkan pilihan
+            document.querySelectorAll('.snake-color-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.snake-color-option').forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    snakeColor = this.getAttribute('data-color');
+                });
+            });
+            
+            highScoreDisplay.textContent = highScore;
+            targetScoreDisplay.textContent = targetScore;
+            levelDisplay.textContent = level;
+            
+            // Initialize game
+            function init() {
+                // Initialize snake dengan bentuk bulat
+                snake = [
+                    {x: 5, y: 10},
+                    {x: 4, y: 10},
+                    {x: 3, y: 10}
+                ];
+                
+                // Generate first food
+                generateFood();
+                
+                // Reset direction
+                direction = 'right';
+                nextDirection = 'right';
+                
+                // Reset score and level
+                score = 0;
+                level = 1;
+                targetScore = 100;
+                speed = 150;
+                
+                // Update displays
+                scoreDisplay.textContent = score;
+                targetScoreDisplay.textContent = targetScore;
+                levelDisplay.textContent = level;
+                lengthDisplay.textContent = snake.length;
+            }
+            
+            // Generate food dengan properti berbeda
+            function generateFood() {
+                food = {
+                    x: Math.floor(Math.random() * gridWidth),
+                    y: Math.floor(Math.random() * gridHeight),
+                    color: foodColors[Math.floor(Math.random() * foodColors.length)],
+                    size: foodSizes[Math.floor(Math.random() * foodSizes.length)],
+                    points: foodPoints[Math.floor(Math.random() * foodPoints.length)],
+                    type: Math.floor(Math.random() * 5) // 5 jenis makanan berbeda
+                };
+                
+                // Make sure food doesn't appear on snake
+                for (let segment of snake) {
+                    if (segment.x === food.x && segment.y === food.y) {
+                        generateFood();
+                        break;
+                    }
+                }
+            }
+            
+            // Draw game elements
+            function draw() {
+                // Clear canvas
+                ctx.fillStyle = '#1a2a6c';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw grid
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+                ctx.lineWidth = 0.5;
+                for (let x = 0; x < canvas.width; x += gridSize) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, canvas.height);
+                    ctx.stroke();
+                }
+                for (let y = 0; y < canvas.height; y += gridSize) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(canvas.width, y);
+                    ctx.stroke();
+                }
+                
+                // Draw snake dengan bentuk bulat
+                snake.forEach((segment, index) => {
+                    // Gradient warna untuk efek visual
+                    let segmentColor = snakeColor;
+                    if (index === 0) {
+                        // Kepala cacing - lebih terang
+                        ctx.fillStyle = lightenColor(segmentColor, 20);
+                    } else {
+                        // Tubuh cacing - lebih gelap untuk bagian belakang
+                        const darkenAmount = (index / snake.length) * 30;
+                        ctx.fillStyle = darkenColor(segmentColor, darkenAmount);
+                    }
+                    
+                    // Gambar lingkaran untuk setiap segment
+                    ctx.beginPath();
+                    ctx.arc(
+                        segment.x * gridSize + gridSize / 2,
+                        segment.y * gridSize + gridSize / 2,
+                        gridSize / 2 - 1,
+                        0,
+                        Math.PI * 2
+                    );
+                    ctx.fill();
+                    
+                    // Mata untuk kepala
+                    if (index === 0) {
+                        ctx.fillStyle = 'white';
+                        
+                        // Posisi mata berdasarkan arah
+                        let eye1X, eye1Y, eye2X, eye2Y;
+                        switch(direction) {
+                            case 'right':
+                                eye1X = segment.x * gridSize + gridSize - 6;
+                                eye1Y = segment.y * gridSize + 6;
+                                eye2X = segment.x * gridSize + gridSize - 6;
+                                eye2Y = segment.y * gridSize + gridSize - 6;
+                                break;
+                            case 'left':
+                                eye1X = segment.x * gridSize + 6;
+                                eye1Y = segment.y * gridSize + 6;
+                                eye2X = segment.x * gridSize + 6;
+                                eye2Y = segment.y * gridSize + gridSize - 6;
+                                break;
+                            case 'up':
+                                eye1X = segment.x * gridSize + 6;
+                                eye1Y = segment.y * gridSize + 6;
+                                eye2X = segment.x * gridSize + gridSize - 6;
+                                eye2Y = segment.y * gridSize + 6;
+                                break;
+                            case 'down':
+                                eye1X = segment.x * gridSize + 6;
+                                eye1Y = segment.y * gridSize + gridSize - 6;
+                                eye2X = segment.x * gridSize + gridSize - 6;
+                                eye2Y = segment.y * gridSize + gridSize - 6;
+                                break;
+                        }
+                        
+                        // Gambar mata
+                        ctx.beginPath();
+                        ctx.arc(eye1X, eye1Y, 3, 0, Math.PI * 2);
+                        ctx.fill();
+                        
+                        ctx.beginPath();
+                        ctx.arc(eye2X, eye2Y, 3, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                });
+                
+                // Draw food dengan bentuk dan efek berbeda
+                ctx.fillStyle = food.color;
+                
+                // Gambar makanan dengan bentuk berbeda berdasarkan type
+                switch(food.type) {
+                    case 0: // Lingkaran biasa
+                        ctx.beginPath();
+                        ctx.arc(
+                            food.x * gridSize + gridSize / 2,
+                            food.y * gridSize + gridSize / 2,
+                            food.size / 2,
+                            0,
+                            Math.PI * 2
+                        );
+                        ctx.fill();
+                        break;
+                        
+                    case 1: // Bintang
+                        drawStar(
+                            ctx,
+                            food.x * gridSize + gridSize / 2,
+                            food.y * gridSize + gridSize / 2,
+                            5,
+                            food.size / 2,
+                            food.size / 4
+                        );
+                        ctx.fill();
+                        break;
+                        
+                    case 2: // Segitiga
+                        ctx.beginPath();
+                        ctx.moveTo(food.x * gridSize + gridSize / 2, food.y * gridSize + gridSize / 2 - food.size / 2);
+                        ctx.lineTo(food.x * gridSize + gridSize / 2 - food.size / 2, food.y * gridSize + gridSize / 2 + food.size / 2);
+                        ctx.lineTo(food.x * gridSize + gridSize / 2 + food.size / 2, food.y * gridSize + gridSize / 2 + food.size / 2);
+                        ctx.closePath();
+                        ctx.fill();
+                        break;
+                        
+                    case 3: // Kotak
+                        ctx.fillRect(
+                            food.x * gridSize + gridSize / 2 - food.size / 2,
+                            food.y * gridSize + gridSize / 2 - food.size / 2,
+                            food.size,
+                            food.size
+                        );
+                        break;
+                        
+                    case 4: // Diamond
+                        ctx.beginPath();
+                        ctx.moveTo(food.x * gridSize + gridSize / 2, food.y * gridSize + gridSize / 2 - food.size / 2);
+                        ctx.lineTo(food.x * gridSize + gridSize / 2 + food.size / 2, food.y * gridSize + gridSize / 2);
+                        ctx.lineTo(food.x * gridSize + gridSize / 2, food.y * gridSize + gridSize / 2 + food.size / 2);
+                        ctx.lineTo(food.x * gridSize + gridSize / 2 - food.size / 2, food.y * gridSize + gridSize / 2);
+                        ctx.closePath();
+                        ctx.fill();
+                        break;
+                }
+                
+                // Efek glow untuk makanan
+                ctx.shadowColor = food.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 0;
+                
+                // Reset shadow
+                setTimeout(() => {
+                    ctx.shadowColor = 'transparent';
+                    ctx.shadowBlur = 0;
+                }, 0);
+                
+                // Tampilkan poin makanan
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 10px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(
+                    food.points,
+                    food.x * gridSize + gridSize / 2,
+                    food.y * gridSize + gridSize / 2
+                );
+            }
+            
+            // Helper function untuk menggambar bintang
+            function drawStar(ctx, cx, cy, spikes, outerRadius, innerRadius) {
+                let rot = Math.PI / 2 * 3;
+                let x = cx;
+                let y = cy;
+                let step = Math.PI / spikes;
+                
+                ctx.beginPath();
+                ctx.moveTo(cx, cy - outerRadius);
+                
+                for (let i = 0; i < spikes; i++) {
+                    x = cx + Math.cos(rot) * outerRadius;
+                    y = cy + Math.sin(rot) * outerRadius;
+                    ctx.lineTo(x, y);
+                    rot += step;
+                    
+                    x = cx + Math.cos(rot) * innerRadius;
+                    y = cy + Math.sin(rot) * innerRadius;
+                    ctx.lineTo(x, y);
+                    rot += step;
+                }
+                
+                ctx.lineTo(cx, cy - outerRadius);
+                ctx.closePath();
+            }
+            
+            // Helper function untuk warna
+            function lightenColor(color, percent) {
+                const num = parseInt(color.replace("#", ""), 16);
+                const amt = Math.round(2.55 * percent);
+                const R = (num >> 16) + amt;
+                const G = (num >> 8 & 0x00FF) + amt;
+                const B = (num & 0x0000FF) + amt;
+                return `#${(
+                    0x1000000 +
+                    (R < 255 ? (R < 1 ? 0 : R) : 255) * 0x10000 +
+                    (G < 255 ? (G < 1 ? 0 : G) : 255) * 0x100 +
+                    (B < 255 ? (B < 1 ? 0 : B) : 255)
+                ).toString(16).slice(1)}`;
+            }
+            
+            function darkenColor(color, percent) {
+                const num = parseInt(color.replace("#", ""), 16);
+                const amt = Math.round(2.55 * percent);
+                const R = (num >> 16) - amt;
+                const G = (num >> 8 & 0x00FF) - amt;
+                const B = (num & 0x0000FF) - amt;
+                return `#${(
+                    0x1000000 +
+                    (R > 0 ? (R < 255 ? R : 255) : 0) * 0x10000 +
+                    (G > 0 ? (G < 255 ? G : 255) : 0) * 0x100 +
+                    (B > 0 ? (B < 255 ? B : 255) : 0)
+                ).toString(16).slice(1)}`;
+            }
+            
+            // Update game state
+            function update() {
+                // Update direction
+                direction = nextDirection;
+                
+                // Calculate new head position
+                const head = {...snake[0]};
+                
+                switch(direction) {
+                    case 'up': head.y--; break;
+                    case 'down': head.y++; break;
+                    case 'left': head.x--; break;
+                    case 'right': head.x++; break;
+                }
+                
+                // Check wall collision
+                if (head.x < 0 || head.x >= gridWidth || head.y < 0 || head.y >= gridHeight) {
+                    gameOver();
+                    return;
+                }
+                
+                // Check self collision
+                for (let segment of snake) {
+                    if (head.x === segment.x && head.y === segment.y) {
+                        gameOver();
+                        return;
+                    }
+                }
+                
+                // Add new head
+                snake.unshift(head);
+                
+                // Check food collision
+                if (head.x === food.x && head.y === food.y) {
+                    // Increase score based on food points
+                    score += food.points;
+                    scoreDisplay.textContent = score;
+                    lengthDisplay.textContent = snake.length;
+                    
+                    // Show notification for different foods
+                    let foodName = '';
+                    switch(food.type) {
+                        case 0: foodName = 'Makanan Biasa'; break;
+                        case 1: foodName = 'Makanan Bintang'; break;
+                        case 2: foodName = 'Makanan Segitiga'; break;
+                        case 3: foodName = 'Makanan Kotak'; break;
+                        case 4: foodName = 'Makanan Diamond'; break;
+                    }
+                    
+                    showNotification(`${foodName}! +${food.points} poin`, 'success');
+                    
+                    // Check if level completed
+                    if (score >= targetScore) {
+                        levelUp();
+                    }
+                    
+                    // Generate new food
+                    generateFood();
+                } else {
+                    // Remove tail if no food eaten
+                    snake.pop();
+                }
+            }
+            
+            // Level up function
+            function levelUp() {
+                level++;
+                targetScore = 100 * level;
+                speed = Math.max(50, speed - 20); // Increase speed, minimum 50ms
+                
+                // Update displays
+                levelDisplay.textContent = level;
+                targetScoreDisplay.textContent = targetScore;
+                
+                // Show level up notification
+                showNotification(`Level ${level}! Target: ${targetScore} poin`, 'success');
+                
+                // Flash effect
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                setTimeout(draw, 100);
+            }
+            
+            // Game loop
+            function gameLoop() {
+                update();
+                draw();
+                
+                if (gameRunning) {
+                    gameLoopId = setTimeout(gameLoop, speed);
+                }
+            }
+            
+            // Game over
+            function gameOver() {
+                gameRunning = false;
+                startBtn.textContent = 'Mulai Game';
+                pauseBtn.textContent = 'Jeda';
+                
+                // Update high score
+                if (score > highScore) {
+                    highScore = score;
+                    localStorage.setItem('snakeHighScore', highScore);
+                    highScoreDisplay.textContent = highScore;
+                    showNotification(`Rekor Baru! ${score} poin`, 'success');
+                }
+                
+                // Draw game over screen
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.fillStyle = 'white';
+                ctx.font = '30px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('Game Over!', canvas.width / 2, canvas.height / 2 - 50);
+                ctx.font = '20px Arial';
+                ctx.fillText(`Skor Akhir: ${score}`, canvas.width / 2, canvas.height / 2 - 10);
+                ctx.fillText(`Level Tertinggi: ${level}`, canvas.width / 2, canvas.height / 2 + 20);
+                ctx.fillText(`Rekor: ${highScore}`, canvas.width / 2, canvas.height / 2 + 50);
+            }
+            
+            // Event listeners for controls
+            document.addEventListener('keydown', (e) => {
+                switch(e.key.toLowerCase()) {
+                    case 'arrowup':
+                    case 'w':
+                        if (direction !== 'down') nextDirection = 'up';
+                        break;
+                    case 'arrowdown':
+                    case 's':
+                        if (direction !== 'up') nextDirection = 'down';
+                        break;
+                    case 'arrowleft':
+                    case 'a':
+                        if (direction !== 'right') nextDirection = 'left';
+                        break;
+                    case 'arrowright':
+                    case 'd':
+                        if (direction !== 'left') nextDirection = 'right';
+                        break;
+                }
+            });
+            
+            // Control buttons
+            startBtn.addEventListener('click', () => {
+                if (!gameRunning) {
+                    if (startBtn.textContent === 'Mulai Game') {
+                        init();
+                    }
+                    gameRunning = true;
+                    startBtn.textContent = 'Jeda Game';
+                    gameLoop();
+                } else {
+                    gameRunning = false;
+                    startBtn.textContent = 'Lanjutkan';
+                    if (gameLoopId) clearTimeout(gameLoopId);
+                }
+            });
+            
+            pauseBtn.addEventListener('click', () => {
+                if (gameRunning) {
+                    gameRunning = false;
+                    startBtn.textContent = 'Lanjutkan';
+                    pauseBtn.textContent = 'Lanjutkan';
+                    if (gameLoopId) clearTimeout(gameLoopId);
+                } else {
+                    gameRunning = true;
+                    startBtn.textContent = 'Jeda Game';
+                    pauseBtn.textContent = 'Jeda';
+                    gameLoop();
+                }
+            });
+            
+            resetBtn.addEventListener('click', () => {
+                if (gameLoopId) clearTimeout(gameLoopId);
+                gameRunning = false;
+                startBtn.textContent = 'Mulai Game';
+                pauseBtn.textContent = 'Jeda';
+                init();
+                draw();
+            });
+            
+            // Initialize and draw initial state
+            init();
+            draw();
+        }
+        
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            showNotification(`Terima kasih ${name}! Pesan Anda telah dikirim.`, 'success');
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+    </script>
+</body>
+</html>
