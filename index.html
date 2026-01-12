@@ -6,7 +6,7 @@
     <title>SnackZone</title>
     
     <!-- FAVICON -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍔</text></svg>">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
     
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,27 +23,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
-
-        /* ===== Logo =====*/
-        /* Tambahkan ini di file CSS Anda atau di dalam tag <style> */
-.logo-container {
-    display: flex;         /* Membuat gambar dan teks sejajar ke samping */
-    align-items: center;    /* Membuat gambar dan teks lurus di tengah secara vertikal */
-    gap: 10px;             /* Memberi jarak antara gambar dan teks */
-}
-
-.logo-img {
-    height: 40px;          /* Sesuaikan tinggi logo dengan selera Anda */
-    width: auto;           /* Menjaga proporsi gambar agar tidak gepeng */
-    border-radius: 8px;    /* Opsional: membuat sudut logo sedikit melengkung */
-}
-
-.logo-text {
-    font-size: 24px;       /* Sesuaikan ukuran font SnackZone */
-    font-weight: bold;
-    color: #e65c6b;        /* Warna merah muda sesuai di foto Anda */
-    font-family: sans-serif;
-}
         /* ===== VARIABLES & RESET ===== */
         :root {
             /* Color Palette untuk Makanan */
@@ -130,7 +109,7 @@
 
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: var(--white); 
+            color: var(--white);
             box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
         }
 
@@ -592,10 +571,30 @@
             font-size: 0.9rem;
         }
 
+        .product-stock {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        .product-stock.low {
+            color: #FF6B6B;
+            font-weight: 600;
+        }
+
+        .product-stock.out {
+            color: #f44336;
+            font-weight: 600;
+        }
+
         .product-actions {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-top: 10px;
         }
 
         .add-to-cart {
@@ -614,6 +613,12 @@
 
         .add-to-cart:hover {
             transform: scale(1.1);
+        }
+
+        .add-to-cart:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
         }
 
         /* Image Placeholder Fallback */
@@ -942,6 +947,11 @@
             font-size: 0.8rem;
         }
 
+        .quantity-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
         .cart-total {
             border-top: 2px solid var(--gray);
             padding-top: 15px;
@@ -1136,6 +1146,207 @@
             margin: 0 auto;
         }
 
+        /* ===== STOCK MANAGEMENT PAGE ===== */
+        .stock-management {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--admin-bg);
+            color: var(--admin-text);
+            z-index: 2000;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .stock-management.active {
+            display: block;
+        }
+
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-bottom: 2px solid var(--admin-card);
+            flex-wrap: wrap;
+        }
+
+        .stock-title {
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, #FF9800, #FF5722);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stock-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .stock-content {
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .stock-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .stock-search {
+            position: relative;
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .stock-search input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border-radius: 25px;
+            border: 2px solid #444;
+            background-color: #2d2d2d;
+            color: white;
+            font-size: 0.95rem;
+        }
+
+        .stock-search i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        .stock-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 8px 15px;
+            border-radius: 25px;
+            border: 2px solid #444;
+            background-color: #2d2d2d;
+            color: white;
+            cursor: pointer;
+        }
+
+        .stock-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .stock-table th {
+            text-align: left;
+            padding: 15px;
+            background-color: #2d2d2d;
+            border-bottom: 2px solid #444;
+            color: #aaa;
+            font-weight: 600;
+        }
+
+        .stock-table td {
+            padding: 15px;
+            border-bottom: 1px solid #444;
+            vertical-align: middle;
+        }
+
+        .stock-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .stock-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stock-input {
+            width: 80px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background-color: #2d2d2d;
+            color: white;
+            text-align: center;
+        }
+
+        .stock-btn {
+            padding: 6px 12px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .stock-btn.add {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .stock-btn.remove {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .stock-btn:hover {
+            opacity: 0.9;
+        }
+
+        .stock-low {
+            color: #FF9800;
+            font-weight: 600;
+        }
+
+        .stock-out {
+            color: #f44336;
+            font-weight: 600;
+        }
+
+        .stock-good {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+
+        .stock-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .stock-badge.low {
+            background-color: rgba(255, 152, 0, 0.2);
+            color: #FF9800;
+        }
+
+        .stock-badge.out {
+            background-color: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+        }
+
+        .stock-badge.good {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+
         /* ===== PAGINATION ===== */
         .pagination {
             display: flex;
@@ -1186,6 +1397,11 @@
             .cart-sidebar {
                 max-width: 100%;
                 padding: 15px;
+            }
+            
+            .stock-table {
+                display: block;
+                overflow-x: auto;
             }
         }
 
@@ -1258,6 +1474,19 @@
                 height: 22px;
                 min-width: 22px;
                 font-size: 0.7rem;
+            }
+            
+            .admin-header,
+            .stock-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .admin-actions,
+            .stock-actions {
+                width: 100%;
+                justify-content: center;
             }
         }
 
@@ -1354,19 +1583,17 @@
                 justify-content: space-between;
             }
             
-            .admin-header {
-                flex-direction: column;
-                gap: 10px;
-                align-items: flex-start;
-            }
-            
-            .admin-actions {
-                width: 100%;
-                justify-content: center;
-            }
-            
             .login-container {
                 padding: 20px;
+            }
+            
+            .stock-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .stock-search {
+                max-width: 100%;
             }
         }
 
@@ -1465,6 +1692,9 @@
                 <i class="fas fa-chart-line"></i> Dashboard Omset SnackZone
             </h1>
             <div class="admin-actions">
+                <button class="btn btn-primary" onclick="showStockManagement()">
+                    <i class="fas fa-boxes"></i> Kelola Stok
+                </button>
                 <button class="btn btn-primary" onclick="exportData()">
                     <i class="fas fa-file-export"></i> Export Data
                 </button>
@@ -1486,13 +1716,98 @@
         </div>
     </div>
 
+    <!-- STOCK MANAGEMENT PAGE -->
+    <div class="stock-management" id="stockManagement">
+        <div class="stock-header">
+            <h1 class="stock-title">
+                <i class="fas fa-boxes"></i> Manajemen Stok Produk
+            </h1>
+            <div class="stock-actions">
+                <button class="btn btn-primary" onclick="syncStockData()">
+                    <i class="fas fa-sync-alt"></i> Sync Data
+                </button>
+                <button class="btn btn-primary" onclick="exportStockReport()">
+                    <i class="fas fa-file-excel"></i> Export Stok
+                </button>
+                <button class="btn btn-secondary" onclick="exitStockManagement()">
+                    <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+                </button>
+            </div>
+        </div>
+        
+        <div class="stock-content">
+            <!-- Kontrol pencarian dan filter -->
+            <div class="stock-controls">
+                <div class="stock-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="stockSearch" placeholder="Cari produk..." onkeyup="filterStockTable()">
+                </div>
+                <div class="stock-filters">
+                    <select class="filter-select" id="stockCategoryFilter" onchange="filterStockTable()">
+                        <option value="all">Semua Kategori</option>
+                        <option value="snack">Snack</option>
+                        <option value="food">Makanan</option>
+                        <option value="drink">Minuman</option>
+                        <option value="promo">Promo</option>
+                    </select>
+                    <select class="filter-select" id="stockStatusFilter" onchange="filterStockTable()">
+                        <option value="all">Semua Status</option>
+                        <option value="low">Stok Menipis</option>
+                        <option value="out">Habis</option>
+                        <option value="good">Stok Aman</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Tabel stok -->
+            <div style="overflow-x: auto;">
+                <table class="stock-table" id="stockTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%;">ID</th>
+                            <th style="width: 25%;">Nama Produk</th>
+                            <th style="width: 15%;">Kategori</th>
+                            <th style="width: 15%;">Stok Saat Ini</th>
+                            <th style="width: 15%;">Status</th>
+                            <th style="width: 25%;">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stockTableBody">
+                        <!-- Data stok akan dimuat via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Ringkasan stok -->
+            <div style="margin-top: 30px; padding: 20px; background-color: #2d2d2d; border-radius: 10px;">
+                <h3 style="margin-bottom: 15px; color: #FF9800;">📊 Ringkasan Stok</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div style="text-align: center; padding: 15px; background-color: #3d3d3d; border-radius: 8px;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #4CAF50;" id="totalStock">0</div>
+                        <div style="color: #aaa;">Total Stok</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background-color: #3d3d3d; border-radius: 8px;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #FF9800;" id="lowStockCount">0</div>
+                        <div style="color: #aaa;">Stok Menipis</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background-color: #3d3d3d; border-radius: 8px;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #f44336;" id="outOfStockCount">0</div>
+                        <div style="color: #aaa;">Stok Habis</div>
+                    </div>
+                    <div style="text-align: center; padding: 15px; background-color: #3d3d3d; border-radius: 8px;">
+                        <div style="font-size: 2rem; font-weight: 800; color: #2196F3;" id="totalProducts">0</div>
+                        <div style="color: #aaa;">Total Produk</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- HEADER -->
     <header>
         <div class="container header-container">
             <div class="logo" id="logo">
-              <div class="logo-container">
-    <img src="Gemini_Generated_Image_mblfjemblfjemblf.png" alt="Logo SnackZone" class="logo-img">
-</div>
+              <img src="Gemini_Generated_Image_mblfjemblfjemblf.png" alt="Deskripsi gambar" width="25" height="25">
                 <span>SnackZone</span>
             </div>
             
@@ -1583,28 +1898,28 @@
                         <i class="fas fa-cookie-bite"></i>
                     </div>
                     <h3>Snack</h3>
-                    <p>pilihan snack lezat</p>
+                    <p>20+ pilihan snack lezat</p>
                 </div>
                 <div class="category-card" onclick="filterProducts('food')">
                     <div class="category-icon">
                         <i class="fas fa-utensils"></i>
                     </div>
                     <h3>Makanan</h3>
-                    <p>menu makanan berat</p>
+                    <p>20+ menu makanan berat</p>
                 </div>
                 <div class="category-card" onclick="filterProducts('drink')">
                     <div class="category-icon">
                         <i class="fas fa-wine-glass-alt"></i>
                     </div>
                     <h3>Minuman</h3>
-                    <p>varian minuman</p>
+                    <p>20+ varian minuman</p>
                 </div>
                 <div class="category-card" onclick="filterProducts('promo')">
                     <div class="category-icon">
                         <i class="fas fa-tag"></i>
                     </div>
                     <h3>Promo</h3>
-                    <p>menu diskon spesial</p>
+                    <p>20+ menu diskon spesial</p>
                 </div>
             </div>
         </div>
@@ -1781,7 +2096,7 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; Projek UAS_Pemrograman Lanjut_2026 SnackZone. Menu Snack, Makanan & Minuman. Semua Hak Dilindungi.</p>
+                <p>&copy; Projek UAS_Pemrograman Lanjut_Rahmat hidayat_2026 SnackZone. Menu Snack, Makanan & Minuman. Semua Hak Dilindungi.</p>
             </div>
         </div>
     </footer>
@@ -1853,8 +2168,16 @@
             // Setup logo click counter untuk shortcut admin
             setupAdminShortcut();
             
-            // Inisialisasi data sales (DASHBOARD - Data KOSONG awalnya)
+            // Inisialisasi data sales
             initializeSalesData();
+            
+            // Inisialisasi data stok - DIPERBAIKI
+            initializeStockData();
+            
+            // PERBAIKAN: Pastikan semua produk memiliki data stok
+            setTimeout(() => {
+                initializeAllStock();
+            }, 500);
         });
 
         // ===== VARIABEL GLOBAL =====
@@ -1865,12 +2188,20 @@
         const itemsPerPage = 12;
         let autoRefreshInterval = null;
         
-        // ===== DATA TRANSAKSI & OMSET - DATA KOSONG AWAL =====
+        // ===== DATA TRANSAKSI & OMSET =====
         let salesData = {
             transactions: [],
             dailyStats: {},
             productStats: {},
             initialized: false
+        };
+
+        // ===== DATA STOK PRODUK =====
+        let stockData = {
+            products: [],
+            initialized: false,
+            lowStockThreshold: 10,
+            outOfStockThreshold: 0
         };
 
         // ===== 80 PRODUK LENGKAP DENGAN GAMBAR ASLI =====
@@ -1992,7 +2323,7 @@
                 category: "snack",
                 price: 25000,
                 discount: 15,
-                image: "OIP.jfif",
+                image: "https://images.unsplash.com/photo-1559620192-032c64bc86af?w=400&h=250&fit=crop&auto=format",
                 rating: 4.8,
                 description: "Kue nastar dengan selai nanas homemade yang manis pas",
                 badges: ["discount", "hot"]
@@ -2148,7 +2479,7 @@
                 category: "food",
                 price: 25000,
                 discount: 15,
-                image: "OIP (1).jfif",
+                image: "https://images.unsplash.com/photo-1559314809-2b99056a8c4a?w=400&h=250&fit=crop&auto=format",
                 rating: 4.8,
                 description: "Bakso sapi ukuran jumbo dengan kuah kaldu sapi",
                 badges: ["discount"]
@@ -2170,7 +2501,7 @@
                 category: "food",
                 price: 30000,
                 discount: 20,
-                image: "Ikan bakar.jfif",
+                image: "https://images.unsplash.com/photo-1615147342761-923d60452e84?w=400&h=250&fit=crop&auto=format",
                 rating: 4.6,
                 description: "Ikan bakar dengan sambal matah dan lalapan segar",
                 badges: ["discount"]
@@ -2214,7 +2545,7 @@
                 category: "food",
                 price: 30000,
                 discount: 0,
-                image: "Nasi padang.jfif",
+                image: "https://images.unsplash.com/photo-1585937421612-70ca003675ed?w=400&h=250&fit=crop&auto=format",
                 rating: 4.8,
                 description: "Nasi Padang dengan lauk pilihan dan sayur nangka",
                 badges: ["bestseller"]
@@ -2485,61 +2816,7 @@
                 description: "Es kopi dengan susu dan gula aren",
                 badges: ["bestseller"]
             },
-            {
-                id: 56,
-                name: "Lemon Tea",
-                category: "drink",
-                price: 12000,
-                discount: 10,
-                image: "https://images.unsplash.com/photo-1560512823-829485b8bf24?w=400&h=250&fit=crop&auto=format",
-                rating: 4.6,
-                description: "Teh dengan perasan lemon segar dan madu",
-                badges: ["discount"]
-            },
-            {
-                id: 57,
-                name: "Soda Gembira",
-                category: "drink",
-                price: 10000,
-                discount: 0,
-                image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=250&fit=crop&auto=format",
-                rating: 4.4,
-                description: "Soda dengan sirup dan susu yang menyegarkan",
-                badges: []
-            },
-            {
-                id: 58,
-                name: "Jus Wortel",
-                category: "drink",
-                price: 11000,
-                discount: 0,
-                image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&h=250&fit=crop&auto=format",
-                rating: 4.3,
-                description: "Jus wortel sehat dengan madu dan jeruk",
-                badges: []
-            },
-            {
-                id: 59,
-                name: "Es Teler",
-                category: "drink",
-                price: 15000,
-                discount: 15,
-                image: "https://images.unsplash.com/photo-1560512823-829485b8bf24?w=400&h=250&fit=crop&auto=format",
-                rating: 4.7,
-                description: "Es teler dengan santan, alpukat, dan nangka",
-                badges: ["discount"]
-            },
-            {
-                id: 60,
-                name: "Hot Chocolate",
-                category: "drink",
-                price: 18000,
-                discount: 0,
-                image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=250&fit=crop&auto=format",
-                rating: 4.8,
-                description: "Coklat panas dengan marshmallow dan whipped cream",
-                badges: ["new"]
-            },
+            
 
             // ===== 20 MENU PROMO =====
             {
@@ -2641,128 +2918,426 @@
                 description: "2 jus buah pilihan (hemat 35%)",
                 badges: ["discount"]
             },
-            {
-                id: 70,
-                name: "Paket Hemat Keluarga",
-                category: "promo",
-                price: 80000,
-                discount: 30,
-                image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=250&fit=crop&auto=format",
-                rating: 4.9,
-                description: "Untuk 4 orang lengkap (makanan + minuman)",
-                badges: ["discount", "bestseller"]
-            },
-            {
-                id: 71,
-                name: "Snack Box Meeting",
-                category: "promo",
-                price: 60000,
-                discount: 25,
-                image: "https://images.unsplash.com/photo-1621447504864-d8686e12698c?w=400&h=250&fit=crop&auto=format",
-                rating: 4.8,
-                description: "Untuk 10 orang meeting (snack + minuman)",
-                badges: ["discount"]
-            },
-            {
-                id: 72,
-                name: "Bubur Ayam Spesial",
-                category: "promo",
-                price: 15000,
-                discount: 20,
-                image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400&h=250&fit=crop&auto=format",
-                rating: 4.6,
-                description: "Bubur ayam dengan topping lengkap",
-                badges: ["discount"]
-            },
-            {
-                id: 73,
-                name: "Paket Sehat",
-                category: "promo",
-                price: 35000,
-                discount: 30,
-                image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=250&fit=crop&auto=format",
-                rating: 4.7,
-                description: "Salad + jus + snack sehat untuk diet",
-                badges: ["discount", "new"]
-            },
-            {
-                id: 74,
-                name: "Coffee Break",
-                category: "promo",
-                price: 20000,
-                discount: 35,
-                image: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=400&h=250&fit=crop&auto=format",
-                rating: 4.8,
-                description: "Kopi + kue pilihan untuk coffee break",
-                badges: ["discount", "hot"]
-            },
-            {
-                id: 75,
-                name: "Paket Anak",
-                category: "promo",
-                price: 25000,
-                discount: 30,
-                image: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=400&h=250&fit=crop&auto=format",
-                rating: 4.7,
-                description: "Makanan & minuman khusus anak-anak",
-                badges: ["discount"]
-            },
-            {
-                id: 76,
-                name: "Sate + Lontong",
-                category: "promo",
-                price: 30000,
-                discount: 25,
-                image: "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=400&h=250&fit=crop&auto=format",
-                rating: 4.8,
-                description: "10 tusuk sate ayam + lontong + bumbu kacang",
-                badges: ["discount", "hot"]
-            },
-            {
-                id: 77,
-                name: "Paket Dessert",
-                category: "promo",
-                price: 40000,
-                discount: 40,
-                image: "https://images.unsplash.com/photo-1559620192-032c64bc86af?w=400&h=250&fit=crop&auto=format",
-                rating: 4.9,
-                description: "3 dessert pilihan (kue, puding, es krim)",
-                badges: ["discount", "bestseller"]
-            },
-            {
-                id: 78,
-                name: "Minuman Dingin Combo",
-                category: "promo",
-                price: 22000,
-                discount: 45,
-                image: "https://images.unsplash.com/photo-1560512823-829485b8bf24?w=400&h=250&fit=crop&auto=format",
-                rating: 4.7,
-                description: "2 minuman dingin pilihan (hemat 45%)",
-                badges: ["discount"]
-            },
-            {
-                id: 79,
-                name: "Nasi Kotak Rapat",
-                category: "promo",
-                price: 25000,
-                discount: 20,
-                image: "https://images.unsplash.com/photo-1585937421612-70ca003675ed?w=400&h=250&fit=crop&auto=format",
-                rating: 4.6,
-                description: "Nasi kotak praktis untuk rapat atau meeting",
-                badges: ["discount"]
-            },
-            {
-                id: 80,
-                name: "Paket Ultimate",
-                category: "promo",
-                price: 100000,
-                discount: 35,
-                image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=250&fit=crop&auto=format",
-                rating: 4.9,
-                description: "Snack + makanan + minuman lengkap untuk 5 orang",
-                badges: ["discount", "bestseller", "hot"]
-            }
+         
         ];
+
+        // ===== FUNGSI MANAJEMEN STOK (DIPERBAIKI) =====
+        function initializeStockData() {
+            // Load data stok dari localStorage
+            const savedStockData = localStorage.getItem('snackzone_stock_data');
+            
+            if (savedStockData) {
+                stockData = JSON.parse(savedStockData);
+            } else {
+                // PERBAIKAN: Inisialisasi data stok dengan nilai default yang masuk akal
+                stockData.products = allProducts.map(product => ({
+                    id: product.id,
+                    name: product.name,
+                    category: product.category,
+                    currentStock: 50, // PERUBAHAN: Stok awal 50 (bukan 0)
+                    minStock: 10,
+                    status: 'good' // PERUBAHAN: Status awal 'good' (bukan 'out')
+                }));
+                
+                stockData.initialized = true;
+                saveStockData();
+            }
+        }
+
+        function saveStockData() {
+            localStorage.setItem('snackzone_stock_data', JSON.stringify(stockData));
+        }
+
+        function updateProductStockStatus() {
+            stockData.products.forEach(product => {
+                if (product.currentStock <= stockData.outOfStockThreshold) {
+                    product.status = 'out';
+                } else if (product.currentStock <= stockData.lowStockThreshold) {
+                    product.status = 'low';
+                } else {
+                    product.status = 'good';
+                }
+            });
+            saveStockData();
+        }
+
+        function getProductStock(productId) {
+            const stockProduct = stockData.products.find(p => p.id === productId);
+            return stockProduct ? stockProduct.currentStock : 50; // PERUBAHAN: Default 50 jika tidak ditemukan
+        }
+
+        function getProductStockStatus(productId) {
+            const stockProduct = stockData.products.find(p => p.id === productId);
+            return stockProduct ? stockProduct.status : 'good'; // PERUBAHAN: Default 'good'
+        }
+
+        function updateStock(productId, amount) {
+            const stockProduct = stockData.products.find(p => p.id === productId);
+            
+            if (stockProduct) {
+                // Update stok
+                stockProduct.currentStock += amount;
+                
+                // Pastikan stok tidak negatif
+                if (stockProduct.currentStock < 0) {
+                    stockProduct.currentStock = 0;
+                }
+                
+                // Update status
+                updateProductStockStatus();
+                
+                // Simpan perubahan
+                saveStockData();
+                
+                // Refresh tampilan produk di halaman utama
+                refreshProductDisplay(productId);
+                
+                // Refresh tampilan dashboard jika sedang aktif
+                if (document.getElementById('adminDashboard').classList.contains('active')) {
+                    updateDashboardStats();
+                }
+                
+                // Refresh tampilan manajemen stok jika sedang aktif
+                if (document.getElementById('stockManagement').classList.contains('active')) {
+                    loadStockTable();
+                }
+                
+                return true;
+            }
+            return false;
+        }
+
+        function refreshProductDisplay(productId) {
+            // Update tampilan produk di halaman utama jika sedang ditampilkan
+            const productElement = document.querySelector(`.product-card[data-id="${productId}"]`);
+            if (productElement) {
+                const stock = getProductStock(productId);
+                const status = getProductStockStatus(productId);
+                
+                // Cari elemen stok di dalam product card
+                const stockElement = productElement.querySelector('.product-stock');
+                if (stockElement) {
+                    stockElement.textContent = `Stok: ${stock}`;
+                    stockElement.className = 'product-stock ' + status;
+                    
+                    // PERBAIKAN: Tambahkan styling berdasarkan status
+                    if (status === 'out') {
+                        stockElement.style.color = '#f44336';
+                        stockElement.style.fontWeight = '600';
+                    } else if (status === 'low') {
+                        stockElement.style.color = '#FF9800';
+                        stockElement.style.fontWeight = '600';
+                    } else {
+                        stockElement.style.color = '#666';
+                        stockElement.style.fontWeight = 'normal';
+                    }
+                }
+                
+                // Update status tombol tambah ke keranjang
+                const addToCartBtn = productElement.querySelector('.add-to-cart');
+                if (addToCartBtn) {
+                    if (stock <= 0) {
+                        addToCartBtn.disabled = true;
+                        addToCartBtn.title = "Stok habis";
+                        addToCartBtn.style.opacity = "0.6";
+                        addToCartBtn.style.cursor = "not-allowed";
+                    } else {
+                        addToCartBtn.disabled = false;
+                        addToCartBtn.title = "Tambah ke keranjang";
+                        addToCartBtn.style.opacity = "1";
+                        addToCartBtn.style.cursor = "pointer";
+                    }
+                }
+            }
+        }
+
+        // ===== FUNGSI STOCK MANAGEMENT UI =====
+        function showStockManagement() {
+            // Tutup dashboard admin
+            document.getElementById('adminDashboard').classList.remove('active');
+            
+            // Tampilkan halaman manajemen stok
+            document.getElementById('stockManagement').classList.add('active');
+            
+            // Load data ke tabel
+            loadStockTable();
+        }
+
+        function exitStockManagement() {
+            // Tutup halaman manajemen stok
+            document.getElementById('stockManagement').classList.remove('active');
+            
+            // Kembali ke dashboard admin
+            document.getElementById('adminDashboard').classList.add('active');
+        }
+
+        function loadStockTable() {
+            const tableBody = document.getElementById('stockTableBody');
+            tableBody.innerHTML = '';
+            
+            let totalStock = 0;
+            let lowStockCount = 0;
+            let outOfStockCount = 0;
+            
+            // PERBAIKAN: Gunakan urutan yang sama dengan allProducts
+            allProducts.forEach(product => {
+                const stockProduct = stockData.products.find(p => p.id === product.id);
+                if (!stockProduct) {
+                    // Jika tidak ada data stok, buat default
+                    stockData.products.push({
+                        id: product.id,
+                        name: product.name,
+                        category: product.category,
+                        currentStock: 50,
+                        minStock: 10,
+                        status: 'good'
+                    });
+                    saveStockData();
+                    return;
+                }
+                
+                // Hitung statistik
+                totalStock += stockProduct.currentStock;
+                if (stockProduct.status === 'low') lowStockCount++;
+                if (stockProduct.status === 'out') outOfStockCount++;
+                
+                // Tentukan kelas CSS berdasarkan status
+                let statusClass = '';
+                let statusText = '';
+                let statusBadge = '';
+                
+                switch(stockProduct.status) {
+                    case 'out':
+                        statusClass = 'stock-out';
+                        statusText = 'Habis';
+                        statusBadge = 'out';
+                        break;
+                    case 'low':
+                        statusClass = 'stock-low';
+                        statusText = 'Menipis';
+                        statusBadge = 'low';
+                        break;
+                    case 'good':
+                        statusClass = 'stock-good';
+                        statusText = 'Aman';
+                        statusBadge = 'good';
+                        break;
+                }
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${stockProduct.id}</td>
+                    <td>${stockProduct.name}</td>
+                    <td>
+                        <span style="text-transform: capitalize; padding: 4px 8px; border-radius: 4px; background-color: ${
+                            stockProduct.category === 'snack' ? 'rgba(255, 152, 0, 0.2)' :
+                            stockProduct.category === 'food' ? 'rgba(76, 175, 80, 0.2)' :
+                            stockProduct.category === 'drink' ? 'rgba(33, 150, 243, 0.2)' :
+                            'rgba(156, 39, 176, 0.2)'
+                        }; color: ${
+                            stockProduct.category === 'snack' ? '#FF9800' :
+                            stockProduct.category === 'food' ? '#4CAF50' :
+                            stockProduct.category === 'drink' ? '#2196F3' :
+                            '#9C27B0'
+                        };">
+                            ${stockProduct.category}
+                        </span>
+                    </td>
+                    <td class="${statusClass}">${stockProduct.currentStock}</td>
+                    <td>
+                        <span class="stock-badge ${statusBadge}">${statusText}</span>
+                    </td>
+                    <td>
+                        <div class="stock-quantity">
+                            <input type="number" class="stock-input" id="stockInput${stockProduct.id}" value="${stockProduct.currentStock}" min="0" onchange="updateStockInput(${stockProduct.id})">
+                            <button class="stock-btn add" onclick="addStock(${stockProduct.id})">
+                                <i class="fas fa-plus"></i> Tambah
+                            </button>
+                            <button class="stock-btn remove" onclick="removeStock(${stockProduct.id})">
+                                <i class="fas fa-minus"></i> Kurangi
+                            </button>
+                        </div>
+                    </td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+            
+            // Update ringkasan
+            document.getElementById('totalStock').textContent = totalStock;
+            document.getElementById('lowStockCount').textContent = lowStockCount;
+            document.getElementById('outOfStockCount').textContent = outOfStockCount;
+            document.getElementById('totalProducts').textContent = stockData.products.length;
+        }
+
+        function filterStockTable() {
+            const searchTerm = document.getElementById('stockSearch').value.toLowerCase();
+            const categoryFilter = document.getElementById('stockCategoryFilter').value;
+            const statusFilter = document.getElementById('stockStatusFilter').value;
+            
+            const rows = document.querySelectorAll('#stockTableBody tr');
+            
+            rows.forEach(row => {
+                const name = row.cells[1].textContent.toLowerCase();
+                const category = row.cells[2].textContent.toLowerCase();
+                const status = row.cells[4].textContent.toLowerCase();
+                
+                let showRow = true;
+                
+                // Filter berdasarkan pencarian
+                if (searchTerm && !name.includes(searchTerm)) {
+                    showRow = false;
+                }
+                
+                // Filter berdasarkan kategori
+                if (categoryFilter !== 'all') {
+                    const categoryText = categoryFilter === 'snack' ? 'snack' :
+                                      categoryFilter === 'food' ? 'makanan' :
+                                      categoryFilter === 'drink' ? 'minuman' :
+                                      'promo';
+                    if (!category.includes(categoryText)) {
+                        showRow = false;
+                    }
+                }
+                
+                // Filter berdasarkan status
+                if (statusFilter !== 'all') {
+                    const statusText = statusFilter === 'low' ? 'menipis' :
+                                    statusFilter === 'out' ? 'habis' :
+                                    'aman';
+                    if (!status.includes(statusText)) {
+                        showRow = false;
+                    }
+                }
+                
+                row.style.display = showRow ? '' : 'none';
+            });
+        }
+
+        function updateStockInput(productId) {
+            const input = document.getElementById(`stockInput${productId}`);
+            const newStock = parseInt(input.value) || 0;
+            
+            if (newStock >= 0) {
+                const stockProduct = stockData.products.find(p => p.id === productId);
+                if (stockProduct) {
+                    stockProduct.currentStock = newStock;
+                    updateProductStockStatus();
+                    saveStockData();
+                    loadStockTable(); // Refresh tabel
+                    refreshProductDisplay(productId); // Refresh tampilan produk
+                    
+                    // PERBAIKAN: Tampilkan notifikasi
+                    showNotification(`Stok ${stockProduct.name} diperbarui menjadi ${newStock}`);
+                }
+            }
+        }
+
+        function addStock(productId) {
+            const input = document.getElementById(`stockInput${productId}`);
+            const currentValue = parseInt(input.value) || 0;
+            input.value = currentValue + 1;
+            updateStockInput(productId);
+            
+            showNotification('Stok berhasil ditambahkan!');
+        }
+
+        function removeStock(productId) {
+            const input = document.getElementById(`stockInput${productId}`);
+            const currentValue = parseInt(input.value) || 0;
+            
+            if (currentValue > 0) {
+                input.value = currentValue - 1;
+                updateStockInput(productId);
+                
+                showNotification('Stok berhasil dikurangi!');
+            }
+        }
+
+        function syncStockData() {
+            // Sinkronisasi data stok dengan data produk
+            allProducts.forEach(product => {
+                const existingStock = stockData.products.find(p => p.id === product.id);
+                if (!existingStock) {
+                    // Tambahkan produk baru ke data stok
+                    stockData.products.push({
+                        id: product.id,
+                        name: product.name,
+                        category: product.category,
+                        currentStock: 50, // PERUBAHAN: Default 50
+                        minStock: 10,
+                        status: 'good'
+                    });
+                }
+            });
+            
+            // Simpan perubahan
+            saveStockData();
+            
+            // Refresh tabel
+            loadStockTable();
+            
+            // PERBAIKAN: Refresh semua produk di halaman utama
+            loadProducts(currentFilter, currentPage);
+            
+            showNotification('Data stok berhasil disinkronisasi!');
+        }
+
+        function exportStockReport() {
+            // Buat data untuk export
+            const exportData = {
+                timestamp: new Date().toISOString(),
+                stockSummary: {
+                    totalProducts: stockData.products.length,
+                    totalStock: stockData.products.reduce((sum, p) => sum + p.currentStock, 0),
+                    lowStockCount: stockData.products.filter(p => p.status === 'low').length,
+                    outOfStockCount: stockData.products.filter(p => p.status === 'out').length
+                },
+                products: stockData.products.map(product => ({
+                    id: product.id,
+                    name: product.name,
+                    category: product.category,
+                    currentStock: product.currentStock,
+                    status: product.status,
+                    minStock: product.minStock
+                }))
+            };
+            
+            // Convert ke JSON
+            const dataStr = JSON.stringify(exportData, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            // Buat link download
+            const exportFileDefaultName = `snackzone_stock_report_${new Date().toISOString().split('T')[0]}.json`;
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+            
+            showNotification('Laporan stok berhasil diexport!');
+        }
+
+        // ===== PERBAIKAN: Tambahkan fungsi untuk menginisialisasi semua stok =====
+        function initializeAllStock() {
+            if (!stockData.initialized) {
+                stockData.products = allProducts.map(product => ({
+                    id: product.id,
+                    name: product.name,
+                    category: product.category,
+                    currentStock: 50,
+                    minStock: 10,
+                    status: 'good'
+                }));
+                
+                stockData.initialized = true;
+                saveStockData();
+                
+                // Refresh tampilan produk
+                loadProducts(currentFilter, currentPage);
+                
+                showNotification('Stok semua produk diinisialisasi dengan nilai default!');
+            }
+        }
 
         // ===== FUNGSI ADMIN YANG SUDAH DIPERBAIKI =====
         let logoClickCount = 0;
@@ -2866,7 +3441,6 @@
                     salesData.productStats = {};
                     salesData.initialized = true;
                     
-                    // TIDAK ADA DATA AWAL - KOSONG SAJA
                     saveSalesData();
                 }
                 
@@ -2961,6 +3535,9 @@
                 
                 salesData.productStats[productKey].sold += item.qty;
                 salesData.productStats[productKey].revenue += item.price * item.qty;
+                
+                // Update stok produk ketika ada transaksi
+                updateStock(item.productId, -item.qty);
             });
             
             // Simpan ke localStorage
@@ -2982,37 +3559,20 @@
 
         // ===== FUNGSI NOTIFIKASI STOK MENIPIS =====
         function checkLowStock() {
-            const lowStockThreshold = 5; // Jika terjual lebih dari 5 dalam 30 hari
+            const lowStockProducts = stockData.products.filter(product => 
+                product.status === 'low' || product.status === 'out'
+            );
             
-            // Get products sold in last 30 days
-            const thirtyDaysAgo = new Date();
-            thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-            const thirtyDaysAgoStr = thirtyDaysAgo.toISOString().split('T')[0];
-            
-            // Hitung produk yang banyak terjual
-            const lowStockProducts = Object.values(salesData.productStats)
-                .filter(product => {
-                    // Cari dari transaksi 30 hari terakhir
-                    const recentSold = salesData.transactions
-                        .filter(trans => trans.date.split(' ')[0] >= thirtyDaysAgoStr)
-                        .reduce((total, trans) => {
-                            const item = trans.items.find(i => i.productId === product.id);
-                            return total + (item ? item.qty : 0);
-                        }, 0);
-                    
-                    return recentSold >= lowStockThreshold;
-                })
-                .map(product => {
-                    const productInfo = allProducts.find(p => p.id === product.id);
-                    return {
-                        id: product.id,
-                        name: product.name,
-                        sold: product.sold,
-                        category: productInfo ? productInfo.category : 'unknown'
-                    };
-                });
-            
-            return lowStockProducts;
+            return lowStockProducts.map(product => {
+                const productInfo = allProducts.find(p => p.id === product.id);
+                return {
+                    id: product.id,
+                    name: product.name,
+                    currentStock: product.currentStock,
+                    status: product.status,
+                    category: productInfo ? productInfo.category : 'unknown'
+                };
+            });
         }
 
         // ===== FUNGSI REFRESH DATA DASHBOARD =====
@@ -3077,7 +3637,7 @@
         }
 
         // ===== FUNGSI PROSES CHECKOUT (Transaksi REAL) =====
-        function processCheckoutTransaction(checkoutTotal) {
+        function processCheckoutTransaction(checkoutTotal, customerName, customerPhone, customerAddress) {
             // Buat transaksi dari keranjang saat ini
             if (cart.length === 0) return;
             
@@ -3099,7 +3659,7 @@
             const transaction = {
                 id: `TRX${Date.now().toString().slice(-6)}`,
                 date: `${dateStr} ${timeStr}`,
-                customer: 'Pelanggan Toko',
+                customer: customerName || 'Pelanggan Toko',
                 items: items,
                 total: checkoutTotal,
                 status: 'completed'
@@ -3131,11 +3691,11 @@
                                 <i class="fas fa-exclamation-triangle" style="font-size: 1.5rem;"></i>
                                 <h3 style="margin: 0;">Perhatian: ${lowStockProducts.length} Produk Stok Menipis!</h3>
                             </div>
-                            <p style="margin-bottom: 10px;">Produk berikut perlu segera di-restock karena penjualan tinggi:</p>
+                            <p style="margin-bottom: 10px;">Produk berikut perlu segera di-restock:</p>
                             <div style="display: flex; flex-wrap: wrap; gap: 10px;">
                                 ${lowStockProducts.slice(0, 5).map(product => `
                                     <span style="background: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 5px; font-size: 0.9rem;">
-                                        ${product.name} (${product.sold} terjual)
+                                        ${product.name} (Stok: ${product.currentStock})
                                     </span>
                                 `).join('')}
                                 ${lowStockProducts.length > 5 ? `<span style="color: #FFEB3B;">+ ${lowStockProducts.length - 5} produk lainnya</span>` : ''}
@@ -3890,8 +4450,13 @@
                     ? Math.round(product.price * (100 - product.discount) / 100) 
                     : product.price;
                 
+                // Dapatkan data stok
+                const stock = getProductStock(product.id);
+                const stockStatus = getProductStockStatus(product.id);
+                const stockStatusClass = stockStatus === 'out' ? 'out' : stockStatus === 'low' ? 'low' : '';
+                
                 const productCard = `
-                    <div class="product-card" data-category="${product.category}">
+                    <div class="product-card" data-category="${product.category}" data-id="${product.id}">
                         <div class="product-image">
                             <div class="product-badges">
                                 ${product.badges.includes('new') ? '<span class="product-badge badge-new">BARU</span>' : ''}
@@ -3919,11 +4484,14 @@
                                     <span>${product.rating}</span>
                                 </div>
                             </div>
+                            <div class="product-stock ${stockStatusClass}">
+                                <i class="fas fa-box"></i> Stok: ${stock}
+                            </div>
                             <div class="product-actions">
                                 <button class="btn btn-secondary" style="padding: 8px 15px; font-size: 0.9rem;" onclick="viewProduct(${product.id})">
                                     <i class="fas fa-eye"></i> Detail
                                 </button>
-                                <button class="add-to-cart" onclick="addToCart(${product.id})">
+                                <button class="add-to-cart" onclick="addToCart(${product.id})" ${stock <= 0 ? 'disabled' : ''}>
                                     <i class="fas fa-cart-plus"></i>
                                 </button>
                             </div>
@@ -3992,13 +4560,17 @@
             currentPage = 1;
             loadProducts(category);
         }
-
         function viewProduct(id) {
             const product = allProducts.find(p => p.id === id);
             if (product) {
                 const finalPrice = product.discount > 0 
                     ? Math.round(product.price * (100 - product.discount) / 100)
                     : product.price;
+                logo
+                const stock = getProductStock(id);
+                const stockStatus = getProductStockStatus(id);
+                const stockStatusText = stockStatus === 'out' ? 'Habis' : stockStatus === 'low' ? 'Menipis' : 'Tersedia';
+                const stockStatusColor = stockStatus === 'out' ? '#f44336' : stockStatus === 'low' ? '#FF9800' : '#4CAF50';
                 
                 const modalHtml = `
                     <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:2000; display:flex; align-items:center; justify-content:center; padding:20px;">
@@ -4039,9 +4611,19 @@
                                     <span>${product.rating}</span>
                                 </div>
                             </div>
+                            
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; padding:10px; background-color:${stockStatusColor}20; border-radius:10px;">
+                                <div>
+                                    <div style="font-weight:600; color:${stockStatusColor};">Status Stok</div>
+                                    <div style="color:#666; font-size:0.9rem;">${stockStatusText}</div>
+                                </div>
+                                <div style="font-size:1.5rem; font-weight:700; color:${stockStatusColor};">${stock}</div>
+                            </div>
+                            
                             <button onclick="addToCart(${product.id}); this.parentElement.parentElement.remove(); showNotification('${product.name} ditambahkan ke keranjang!');" 
-                                    style="width:100%; padding:15px; background:linear-gradient(135deg, var(--primary), var(--secondary)); color:white; border:none; border-radius:10px; font-size:1.1rem; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px;">
-                                <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+                                    style="width:100%; padding:15px; background:linear-gradient(135deg, var(--primary), var(--secondary)); color:white; border:none; border-radius:10px; font-size:1.1rem; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px;" 
+                                    ${stock <= 0 ? 'disabled style="background:#cccccc; cursor:not-allowed;"' : ''}>
+                                <i class="fas fa-cart-plus"></i> ${stock <= 0 ? 'Stok Habis' : 'Tambah ke Keranjang'}
                             </button>
                         </div>
                     </div>
@@ -4073,6 +4655,8 @@
                     const itemTotal = item.price * item.quantity;
                     subtotal += itemTotal;
                     
+                    const availableStock = getProductStock(item.id);
+                    
                     const cartItem = `
                         <div class="cart-item">
                             <img class="cart-item-image" src="${item.image}" alt="${item.name}" 
@@ -4081,17 +4665,22 @@
                                 <div class="cart-item-title">${item.name}</div>
                                 <div class="cart-item-price">Rp ${item.price.toLocaleString()}</div>
                                 <div class="cart-item-quantity">
-                                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">
+                                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)" ${item.quantity <= 1 ? 'disabled' : ''}>
                                         <i class="fas fa-minus"></i>
                                     </button>
                                     <span>${item.quantity}</span>
-                                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">
+                                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)" ${item.quantity >= availableStock ? 'disabled' : ''}>
                                         <i class="fas fa-plus"></i>
                                     </button>
                                     <button style="margin-left: auto; background: none; border: none; color: #FF6B6B; cursor: pointer;" onclick="removeFromCart(${item.id})">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
+                                ${item.quantity >= availableStock ? `
+                                    <div style="font-size:0.8rem; color:#FF6B6B; margin-top:5px;">
+                                        <i class="fas fa-exclamation-circle"></i> Stok tersisa: ${availableStock}
+                                    </div>
+                                ` : ''}
                             </div>
                         </div>
                     `;
@@ -4113,12 +4702,22 @@
             const product = allProducts.find(p => p.id === productId);
             if (!product) return;
             
+            const availableStock = getProductStock(productId);
+            if (availableStock <= 0) {
+                showNotification('Maaf, stok produk ini habis!');
+                return;
+            }
+            
             const existingItem = cart.find(item => item.id === productId);
             const finalPrice = product.discount > 0 
                 ? Math.round(product.price * (100 - product.discount) / 100)
                 : product.price;
             
             if (existingItem) {
+                if (existingItem.quantity >= availableStock) {
+                    showNotification('Maaf, stok tidak mencukupi!');
+                    return;
+                }
                 existingItem.quantity += 1;
             } else {
                 cart.push({
@@ -4142,6 +4741,13 @@
         function updateQuantity(productId, change) {
             const item = cart.find(item => item.id === productId);
             if (item) {
+                const availableStock = getProductStock(productId);
+                
+                if (change > 0 && item.quantity >= availableStock) {
+                    showNotification('Maaf, stok tidak mencukupi!');
+                    return;
+                }
+                
                 item.quantity += change;
                 if (item.quantity <= 0) {
                     cart = cart.filter(item => item.id !== productId);
